@@ -1,4 +1,4 @@
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __description__ = 'A blackbox websocket probe for Prometheus exporter'
 __author__ = 'Mohsen Shojaee'
 __author_email__ = 'smohsensh@yandex.com'

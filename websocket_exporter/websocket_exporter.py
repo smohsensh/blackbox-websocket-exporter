@@ -1,10 +1,13 @@
 from time import sleep
-
+import logging
 from prometheus_client import start_http_server, REGISTRY
 from prometheus_client.metrics_core import GaugeMetricFamily
 
 from websocket_exporter import settings
 from .probe import WebSocketProbe
+
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 
 class WebSocketUptimeCollector(object):
@@ -35,6 +38,8 @@ class WebSocketUptimeCollector(object):
 def main():
     assert settings.URI, 'URI to probe was not set, set "WEBSOCKET_URI" env var'
     REGISTRY.register(WebSocketUptimeCollector())
+    logging.info(f'started websocket exporter, will probe {settings.URI}')
+    logging.info(f'listening on {settings.LISTEN_ADDR}:{settings.LISTEN_PORT}')
     start_http_server(port=settings.LISTEN_PORT, addr=settings.LISTEN_ADDR)
     while True:
         sleep(1)
