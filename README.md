@@ -17,7 +17,7 @@ WEBSOCKET_EXPORTER_URI | URI of websoccket connection to check, starts with `ws(
 WEBSOCKET_EXPORTER_MESSAGE | Optional message to send after connection established
 WEBSOCKET_EXPORTER_EXPECTED_MESSAGE | Optional message to expect to be received from server after connection
 WEBSOCKET_EXPORTER_MATCH_TYPE | How to match expected message (either `contains` or `exact`)
-WEBSOCKET_EXPORTER_TIMEOUT | How long to wait for the connection to be established
+WEBSOCKET_EXPORTER_TIMEOUT | How long to wait for the connection to be established in seconds (default: 10)
 WEBSOCKET_EXPORTER_LISTEN_ADDR | What address to listen (defaults `0.0.0.0`)
 WEBSOCKET_EXPORTER_LISTEN_PORT | What port to listen (defaults `9896`)
 
