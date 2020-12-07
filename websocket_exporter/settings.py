@@ -19,7 +19,7 @@ def validate_uri(uri):
 
 
 URI = get_env_var('URI')
-MESSAGE = get_env_var('SAMPLE_MESSAGE', None)
+MESSAGE = get_env_var('MESSAGE', None)
 EXPECTED_MESSAGE = get_env_var('EXPECTED_MESSAGE', None)
 MATCH_TYPE = get_env_var("MATCH_TYPE", 'contains')
 TIMEOUT = int(get_env_var("TIMEOUT", '10'))

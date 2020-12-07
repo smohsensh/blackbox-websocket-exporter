@@ -36,10 +36,15 @@ class WebSocketUptimeCollector(object):
 
 
 def main():
-    assert settings.URI, 'URI to probe was not set, set "WEBSOCKET_URI" env var'
+    assert settings.URI, 'URI to probe was not set, set "WEBSOCKET_EXPORTER_URI" env var'
+    logging.info(f'Trying to start exporter, will probe {settings.URI}')
+    if settings.MESSAGE:
+        logging.info(f'sends {settings.MESSAGE} after connection')
+    if settings.EXPECTED_MESSAGE:
+        logging.info(f'waits for {settings.EXPECTED_MESSAGE} to match ({settings.MATCH_TYPE})')
+        logging.info(f'Timeouts after {settings.TIMEOUT} seconds')
     REGISTRY.register(WebSocketUptimeCollector())
-    logging.info(f'started websocket exporter, will probe {settings.URI}')
-    logging.info(f'listening on {settings.LISTEN_ADDR}:{settings.LISTEN_PORT}')
+    logging.info(f'started exporter, listening on {settings.LISTEN_ADDR}:{settings.LISTEN_PORT}')
     start_http_server(port=settings.LISTEN_PORT, addr=settings.LISTEN_ADDR)
     while True:
         sleep(1)

@@ -1,4 +1,5 @@
 import asyncio
+import logging
 from time import perf_counter
 from typing import Union
 
@@ -66,11 +67,15 @@ class WebSocketProbe(object):
     async def _await_expected_response(self, connection) -> Union[bool, None]:
         elapsed = 0
         while elapsed < self.timeout:
-            resp = await connection.recv()
-            if self._match(resp):
-                return True
-            await asyncio.sleep(1)
-            elapsed += 1
+            try:
+                resp = await asyncio.wait_for(connection.recv(), timeout=(self.timeout-elapsed))
+                if self._match(resp):
+                    return True
+                await asyncio.sleep(1)
+                elapsed += 1
+            except asyncio.TimeoutError:
+                logging.info(f'Time out while waiting for {self.expected_message} from {self.uri}')
+                return None
         return None
 
     def _match(self, resp: str) -> bool:
