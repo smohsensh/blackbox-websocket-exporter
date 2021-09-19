@@ -28,6 +28,16 @@ WEBSOCKET_EXPORTER_LISTEN_PORT | What port to listen (defaults `9802`)
 - `websocket_probe_latency_milliseconds`: Connection Latency
 - `websocket_probe_received_expected_response`: if expected message was received through the websocket connection
 
+## Run in Docker 
+
+docker build : ``` docker build . -t blackbox-websocket-exporter:latest ```
+
+docker run : ``` docker run -it -e WEBSOCKET_EXPORTER_URI=ws(s)://example.com blackbox-websocket-exporter:latest ```
+
+docker compose : ``` docker compose up -d ```
+
+also, this image is available on the docker hub :  ``` docker pull foxmanx2000/blackbox-websocket-exporter:latest ```
+
 
 ## Future Development
 This exporter is still quite young and there are a handful of features that can be added soon:
