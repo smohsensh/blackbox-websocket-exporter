@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  websokcet-exporter:
+    image: foxmanx2000/blackbox-websocket-exporter:latest
+    environment:
+      WEBSOCKET_EXPORTER_URI: ws(s)://example.com
+      WEBSOCKET_EXPORTER_TIMEOUT: 10
+      WEBSOCKET_EXPORTER_LISTEN_ADDR: "0.0.0.0"
+      WEBSOCKET_EXPORTER_LISTEN_PORT: 9802
+              #      WEBSOCKET_EXPORTER_MESSAGE:
+              #      WEBSOCKET_EXPORTER_EXPECTED_MESSAGE:
+              #      WEBSOCKET_EXPORTER_MATCH_TYPE: 
+    ports:
+      - 9802:9802
+    restart: always
